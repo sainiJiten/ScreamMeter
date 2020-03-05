@@ -1,27 +1,25 @@
-var mic
-var vol = 0
-
+var mic;
+var vol = 0;
+var i = 0;
+var factor;
 function setup() {
   createCanvas(430, 800);
-  // Create an Audio input
   mic = new p5.AudioIn();
-     // start the Audio Input.
-  // By default, it does not .connect() (to the computer speakers)
   mic.start();
 }
 
 function draw() {
+  if (i === 1e12){
+	  i = 0;
+  }
   background(000);
-
-  // Get the overall volume (between 0 and 1.0)
-   var vol = mic.getLevel();
-  
+  factor = Math.sin(2*Math.PI*5000*i);
+  var vol = mic.getLevel();
+  var h = height/2 - vol*factor*height/2;
   fill(0,255,0);
   stroke(0,255,0);
-  
-  // Draw an ellipse with height based on volume
-  var h = map(vol, 0, 0.5, height, 0);
-  ellipse(width/2, h - 25, 50, 50);
+  ellipse(width/2, h , 50, 50);
+  i++;
 }
 
 function touchStarted() {
