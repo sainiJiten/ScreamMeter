@@ -16,7 +16,8 @@ function draw() {
   factor = Math.sin(i);
 //  console.log(factor);
   var vol = mic.getLevel();
-  var h = height/2 - vol*factor*height/2;
+//  console.log(vol);
+  var h = height/2 - (vol+0.8)*factor*height/2;
 //  var h = height/2 - vol*height/2;
   fill(0,255,0);
   stroke(0,255,0);
